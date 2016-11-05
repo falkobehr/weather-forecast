@@ -9,6 +9,9 @@ angular.module('Weather.Forecast')
 
 WeatherForecastController.$inject = ['DEFAULT_COORDINATES', 'DEFAULT_WEATHER_ICON_COLOR', '$scope', '$timeout', 'WeatherForecastService'];
 
+/**
+ * Controller Weather Forecast App.
+ */
 function WeatherForecastController (DEFAULT_COORDINATES, DEFAULT_WEATHER_ICON_COLOR, $scope, $timeout, WeatherForecastService) {
     const REQUEST_STATE_ERROR = 'error';
     const WEATHER_NOW_SELECTOR = 'weather-now';
@@ -20,7 +23,7 @@ function WeatherForecastController (DEFAULT_COORDINATES, DEFAULT_WEATHER_ICON_CO
 
     $scope.submitHandler = submitHandler;
 
-    // Public just for unit tests and coverage
+    // Public method just for unit tests and coverage
     $scope.showWeatherIcons = showWeatherIcons;
 
     /**

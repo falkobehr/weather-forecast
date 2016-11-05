@@ -8,7 +8,7 @@ angular.module('Weather.Forecast')
     .directive('weatherForecast', WeatherForecastDirective);
 
 /**
- * Directive for Angular HTML attribute.
+ * Directive for Angular HTML element.
  * e.g. <weather-forecast />
  */
 function WeatherForecastDirective () {

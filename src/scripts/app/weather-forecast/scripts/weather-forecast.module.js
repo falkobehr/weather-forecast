@@ -12,7 +12,7 @@ angular.module('Weather.Forecast', ['ngResource', 'google.places', 'Weather.Temp
     .filter('dayFromDate', dayFromDate);
 
 /**
- * Format temperature from F to C/C to F.
+ * Format temperature to °C.
  */
 function inCelsius () {
     return (temperature) => {

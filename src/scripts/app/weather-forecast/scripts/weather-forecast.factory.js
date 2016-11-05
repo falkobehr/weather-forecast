@@ -9,6 +9,9 @@ angular.module('Weather.Forecast')
 
 WeatherForecastFactory.$inject = ['SECRET_KEY', '$resource'];
 
+/**
+ * Factory for Dark Sky API requests.
+ */
 function WeatherForecastFactory (SECRET_KEY, $resource) {
     return {
         weather: $resource(`https://api.darksky.net/forecast/${SECRET_KEY}/:coordinates`, {}, {

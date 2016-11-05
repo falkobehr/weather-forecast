@@ -1,0 +1,101 @@
+$screen-xxs: 320px !default;
+$screen-xs: 480px !default;
+$screen-sm: 768px !default;
+$screen-md: 992px !default;
+$screen-lg: 1200px !default;
+
+$mq-max-xxs: '(max-width: #{$screen-xxs - 1})';
+$mq-xxs: '(min-width: #{$screen-xxs})';
+$mq-max-xs: '(max-width: #{$screen-xs - 1})';
+$mq-xs: '(min-width: #{$screen-xs})';
+$mq-max-sm: '(max-width: #{$screen-sm - 1})';
+$mq-sm: '(min-width: #{$screen-sm})';
+$mq-max-md: '(max-width: #{$screen-md - 1})';
+$mq-md: '(min-width: #{$screen-md})';
+$mq-max-lg: '(max-width: #{$screen-lg - 1})';
+$mq-lg: '(min-width: #{$screen-lg})';
+
+$mqs: (
+    xxs: $mq-xxs,
+    xs: $mq-xs,
+    sm: $mq-sm,
+    md: $mq-md,
+    lg: $mq-lg
+) !default;
+
+$max-mqs: (
+    max-lg: $mq-max-lg,
+    max-md: $mq-max-md,
+    max-sm: $mq-max-sm,
+    max-xs: $mq-max-xs,
+    max-xxs: $mq-max-xxs
+) !default;
+
+$all-mqs: map-merge($mqs, $max-mqs);
+
+$spacing-xxxs: 3px !default;
+$spacing-xxs: 5px !default;
+$spacing-xs: 8px !default;
+$spacing-sm: 11px !default;
+$spacing-md: 16px !default;
+$spacing-lg: 22px !default;
+$spacing-xl: 32px !default;
+$spacing-xxl: 44px !default;
+$spacing-xxxl: 64px !default;
+
+$spacings: (
+    0: 0,
+    xxxs: $spacing-xxxs,
+    xxs: $spacing-xxs,
+    xs: $spacing-xs,
+    sm: $spacing-sm,
+    md: $spacing-md,
+    lg: $spacing-lg,
+    xl: $spacing-xl,
+    xxl: $spacing-xxl,
+    xxxl: $spacing-xxxl
+) !default;
+
+$font-size-xxs: 11px !default;
+$line-height-xxs: (14px / $font-size-xxs) !default;
+$font-size-xs: 14px !default;
+$line-height-xs: (18px / $font-size-xs) !default;
+$font-size-sm: 16px !default;
+$line-height-sm: (22px / $font-size-sm) !default;
+$font-size-md: 19px !default;
+$line-height-md: (24px / $font-size-md) !default;
+$font-size-lg: 24px !default;
+$line-height-lg: (28px / $font-size-lg) !default;
+$font-size-xl: 32px !default;
+$line-height-xl: (35px / $font-size-xl) !default;
+$font-size-xxl: 44px !default;
+$line-height-xxl: (46px / $font-size-xxl) !default;
+$font-size-xxxl: 100px !default;
+$line-height-xxxl: (100px / $font-size-xxxl) !default;
+
+$font-size-smaller: .8409em !default; // 1 / sqrt(sqrt(2))
+$font-size-larger: 1.1892em !default; // sqrt(sqrt(2))
+
+$text-sizes: (
+    xxs: $font-size-xxs $line-height-xxs,
+    xs: $font-size-xs $line-height-xs,
+    sm: $font-size-sm $line-height-sm,
+    md: $font-size-md $line-height-md,
+    lg: $font-size-lg $line-height-lg,
+    xl: $font-size-xl $line-height-xl,
+    xxl: $font-size-xxl $line-height-xxl,
+    xxxl: $font-size-xxxl $line-height-xxxl
+) !default;
+
+$border-radius-sm: 3px !default;
+$border-radius-md: 8px !default;
+$border-radius-lg: 16px !default;
+$border-radius-round: 999px !default;
+
+$border-radii: (
+    0: 0,
+    sm: $border-radius-sm,
+    md: $border-radius-md,
+    lg: $border-radius-lg,
+    round: $border-radius-round
+) !default;

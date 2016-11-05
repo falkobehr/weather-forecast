@@ -1,0 +1,21 @@
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        display: table; // 2
+        content: ' '; // 1
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+// Source: http://stackoverflow.com/questions/17181849/placeholder-mixin-scss-css
+@mixin placeholder {
+    ::-webkit-input-placeholder {@content}
+    :-moz-placeholder {@content}
+    ::-moz-placeholder {@content}
+    :-ms-input-placeholder {@content}
+}

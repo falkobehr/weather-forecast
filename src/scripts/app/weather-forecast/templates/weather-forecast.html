@@ -1,0 +1,41 @@
+<div class="weather-forecast">
+    <h1>Weather Forecast</h1>
+    <p>Insert GPS coordinates (e.g. {{ defaultCoordinates }}) here:</p>
+    <form class="weather-forecast__form" ng-submit="submitHandler(place)">
+        <input class="weather-forecast__form--input"
+               g-places-autocomplete
+               placeholder="{{ defaultCoordinates }}"
+               ng-model="place" />
+        <input class="weather-forecast__form--button"
+               type="submit"
+               value="Get Weather Forecast" />
+    </form>
+
+    <!-- Show request error -->
+    <div ng-if="showRequestError">
+        <p class="u-text-red u-padding-sm">An error occurred. Please try again.</p>
+    </div>
+
+    <!-- Show weather forecast -->
+    <div ng-if="showWeatherForecast">
+        <div class="weather-forecast__today">
+            <div class="weather-forecast__today--inner">
+                <h2>Now</h2>
+                <canvas class="weather-forecast--icon" id="{{ ::weatherNowSelector }}" width="156" height="156"></canvas>
+                <p>{{ ::weatherForecastCurrently.temperature | inCelsius }}</p>
+            </div>
+        </div>
+        <ul class="weather-forecast__upcoming">
+            <li class="weather-forecast__upcoming--day" ng-repeat="forecast in weatherForecastDaily">
+                <div class="weather-forecast__upcoming--inner">
+                    <h2>{{ forecast.time | dayFromDate }}</h2>
+                    <canvas class="weather-forecast--icon" id="{{ forecast.time }}" width="48" height="48"></canvas>
+                    <p>
+                        {{ forecast.temperatureMax | inCelsius }}
+                        <small>/ {{ forecast.temperatureMin | inCelsius }}</small>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+@import '../01-settings/index';
+
+/*
+Padding
+
+.u-padding-xs
+.u-padding-top-xs
+.u-padding-right-xs
+.u-padding-bottom-xs
+.u-padding-left-xs
+.u-padding-x-xs
+.u-padding-y-xs
+*/
+
+@each $key, $val in $spacings {
+    .u-padding-#{$key} {
+        padding: $val !important;
+    }
+}
+
+@each $key, $val in $spacings {
+    .u-padding-x-#{$key} {
+        padding-right: $val !important;
+        padding-left: $val !important;
+    }
+
+    .u-padding-y-#{$key} {
+        padding-top: $val !important;
+        padding-bottom: $val !important;
+    }
+}
+
+@each $key, $val in $spacings {
+    @each $direction in top right bottom left {
+        .u-padding-#{$direction}-#{$key} {
+            padding-#{$direction}: $val !important;
+        }
+    }
+}

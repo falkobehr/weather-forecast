@@ -1,0 +1,36 @@
+// Layout
+// ---------------------------------------------
+$border-radius-base: 3px;
+$border-radius-large: $border-radius-base + 2;
+$border-radius-small: $border-radius-base - 2;
+
+// Type
+// ---------------------------------------------
+$font-family-sans-serif: 'Hind', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-size-base: 16px;
+$font-size-large: ceil(($font-size-base * 1.25));
+$font-size-small: ceil(($font-size-base * .85));
+$line-height-base: 1.3125;
+$line-height-large: 1.25;
+$line-height-small: 1.5;
+
+// Forms
+// ---------------------------------------------
+
+// Images
+// ---------------------------------------------
+
+// Fonts
+// ---------------------------------------------
+
+// Shadows
+// ---------------------------------------------
+
+// Standard border
+
+// Standard block hover
+
+// transitions
+// ---------------------------------------------
+$transition-duration: .5s;
+$transition-delay: .2s;

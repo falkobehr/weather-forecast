@@ -1,0 +1,149 @@
+/*
+Selective Reset
+
+Lists are unstyled, paragraphs and headings have a margin-bottom, headings are a bit bigger and of equal size, `small` is a bit smaller. Sizing is done relatively, so you can simply set a base font-size on a wrapper. Read more about the reasons here: [csswizardry.com/2016/02/managing-typography-on-large-apps/](http://csswizardry.com/2016/02/managing-typography-on-large-apps/).
+
+All (pseudo) elements (`*, *::before, *::after`) initially set `border: 0 solid`. This is borrowed from [sanitize.css](https://github.com/10up/sanitize.css).
+*/
+
+%html,
+html {
+    background-color: $color-silver-light;
+    color: $color-gray-dark;
+    font: normal normal 400 #{$font-size-xs}/#{$line-height-xs} #{$font-family-sans-serif};
+    box-sizing: border-box;
+}
+
+* {
+    outline: 0 !important;
+}
+
+*,
+*::before,
+*::after {
+    border: 0 solid;
+    box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+    margin: 0;
+    font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-bottom: $spacing-sm;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: $font-size-larger;
+    line-height: 1.25;
+
+    // TODO: remove :first-child as soon as bootstrap is removed
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+small {
+    font-size: $font-size-smaller;
+}
+
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
+
+i,
+em {
+    font-style: inherit;
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+a {
+    color: $color-gray;
+    text-decoration: inherit;
+
+    &:hover {
+        color: darken($color-gray, 10%);
+        text-decoration: underline;
+    }
+}
+
+hr {
+    margin: $spacing-sm 0;
+    border: 0;
+    border-top: 1px solid $color-silver-dark;
+}
+
+input,
+button,
+select,
+textarea {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+}
+
+a,
+button,
+[type=button],
+[type=reset],
+[type=submit],
+[for] {
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+}
+
+fieldset {
+
+    // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
+    // so we reset that to ensure it behaves more like a standard block element.
+    // See https://github.com/twbs/bootstrap/issues/12359.
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+::-webkit-file-upload-button {
+    cursor: inherit;
+}

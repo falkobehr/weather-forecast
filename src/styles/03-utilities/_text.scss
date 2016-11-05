@@ -1,0 +1,125 @@
+@import '../01-settings/index';
+
+/*
+Text size
+
+Sets font-size and matching line-height.
+
+.u-text-xs - text-size xs
+*/
+
+@each $key, $values in $text-sizes {
+    .u-text-#{$key} {
+        font-size: nth($values, 1) !important;
+        line-height: nth($values, 2) !important;
+    }
+}
+
+/*
+Text align
+
+.u-text-left - left
+.u-text-center - center
+.u-text-right - right
+.u-text-justify - justify
+*/
+
+@each $key in left center right justify {
+    .u-text-#{$key} {
+        text-align: $key !important;
+    }
+}
+
+/*
+Text weight
+
+.u-text-light - light
+.u-text-normal - normal
+.u-text-bold - bold
+*/
+
+@each $key in light normal bold {
+    $val: if($key == light, 300, $key);
+
+    .u-text-#{$key} {
+        font-weight: $val !important;
+    }
+}
+
+/*
+Text decoration
+
+.u-text-underline - underline
+.u-text-decoration-none - none
+*/
+
+.u-text-underline {
+    text-decoration: underline !important;
+}
+
+.u-text-decoration-none {
+    text-decoration: none !important;
+}
+
+/*
+Text color
+
+.u-text-white - white
+*/
+
+@each $key, $val in $colors {
+    .u-text-#{$key} {
+        color: $val !important;
+    }
+}
+
+/*
+Text wrap
+
+.u-text-wrap - white-space: normal
+.u-text-nowrap - white-space: nowrap
+.u-text-truncate - nowrap + ellipsis
+*/
+
+.u-text-wrap {
+    white-space: normal !important;
+}
+
+.u-text-nowrap {
+    white-space: nowrap !important;
+}
+
+.u-text-truncate {
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+}
+
+/*
+Text transformation
+
+.u-text-lowercase - lowercase
+.u-text-uppercase - uppercase
+.u-text-capitalize - capitalize
+*/
+
+@each $key in lowercase uppercase capitalize {
+    .u-text-#{$key} {
+        text-transform: $key !important;
+    }
+}
+
+/*
+Text spacing
+
+.u-text-spacing-0 - 0
+.u-text-spacing-sm - 0.05em
+.u-text-spacing-md - 0.1em
+.u-text-spacing-lg - 0.2em
+*/
+
+@each $key, $value in (0: 0, sm: .05em, md: .1em, lg: .2em) {
+    .u-text-spacing-#{$key} {
+        letter-spacing: $value !important;
+    }
+}

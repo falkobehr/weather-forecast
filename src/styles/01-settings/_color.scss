@@ -1,0 +1,31 @@
+$color-blue: #5bc0de !default;
+$color-orange: #f90 !default;
+$color-purple: #af4682 !default;
+$color-red: #b33 !default;
+$color-turquoise: #49a4d8 !default;
+
+$color-black: #000 !default;
+$color-gray-dark: #474747 !default;
+$color-gray: #888 !default;
+$color-gray-light: #b0b0b0 !default;
+$color-silver-dark: #d2d2d2 !default;
+$color-silver: #e5e5e5 !default;
+$color-silver-light: #f0f0f0 !default;
+$color-white: #fff !default;
+
+$colors: (
+    blue: $color-blue,
+    orange: $color-orange,
+    purple: $color-purple,
+    red: $color-red,
+    black: $color-black,
+    gray-dark: $color-gray-dark,
+    gray: $color-gray,
+    gray-light: $color-gray-light,
+    silver-dark: $color-silver-dark,
+    silver: $color-silver,
+    silver-light: $color-silver-light,
+    white: $color-white,
+    transparent: transparent,
+    inherit: inherit
+) !default;

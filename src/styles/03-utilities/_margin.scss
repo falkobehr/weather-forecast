@@ -1,0 +1,81 @@
+@import '../01-settings/index';
+
+/*
+Margin
+
+In addition to positive margins (`u-margin-top-sm` etc.), you can also apply negative margins with e. g. `u-margin-top-n-sm`.
+
+.u-margin-xs
+.u-margin-top-xs
+.u-margin-right-xs
+.u-margin-bottom-xs
+.u-margin-left-xs
+.u-margin-x-xs
+.u-margin-y-xs
+*/
+
+@each $key, $val in $spacings {
+    .u-margin-#{$key} {
+        margin: $val !important;
+    }
+
+    .u-margin-n-#{$key} {
+        margin: -$val !important;
+    }
+}
+
+@each $key, $val in $spacings {
+    .u-margin-x-#{$key} {
+        margin-right: $val !important;
+        margin-left: $val !important;
+    }
+
+    .u-margin-y-#{$key} {
+        margin-top: $val !important;
+        margin-bottom: $val !important;
+    }
+
+    .u-margin-x-n-#{$key} {
+        margin-right: -$val !important;
+        margin-left: -$val !important;
+    }
+
+    .u-margin-y-n-#{$key} {
+        margin-top: -$val !important;
+        margin-bottom: -$val !important;
+    }
+}
+
+@each $key, $val in $spacings {
+    @each $direction in top right bottom left {
+        .u-margin-#{$direction}-#{$key} {
+            margin-#{$direction}: $val !important;
+        }
+
+        .u-margin-#{$direction}-n-#{$key} {
+            margin-#{$direction}: -$val !important;
+        }
+    }
+}
+
+/*
+Margin-x: auto
+
+Use `u-margin-x-auto` to horizontally center a block with a known width.
+
+markup:
+<div class="demo-box-margin u-display-block">
+    <div class="u-margin-x-auto demo-box-margin" style="width: 250px">
+        <div class="demo-box">
+            u-margin-x-auto
+        </div>
+    </div>
+</div>
+
+#{styleguide-section(3)}
+*/
+
+.u-margin-x-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}

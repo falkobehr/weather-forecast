@@ -1,0 +1,34 @@
+@import '../01-settings/index';
+
+/*
+Display
+
+.u-hidden - hidden, i. e. display: none
+.u-display-inline - inline
+.u-display-inline-block - inline-block
+.u-display-block - block
+
+*/
+
+/*
+Display flex
+
+When using the `display-flex` atom/util, you might want to add `flex` atoms/utils to apply more properties.
+
+*/
+
+@each $display in none inline block inline-block table table-row table-cell flex {
+    $suffix: if($display == none, hidden, display-#{$display});
+
+    .u-#{$suffix} {
+        display: $display !important;
+    }
+
+    @each $key, $val in $all-mqs {
+        @media #{$val} {
+            .u-#{$suffix}\@#{$key} {
+                display: $display !important;
+            }
+        }
+    }
+}

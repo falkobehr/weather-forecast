@@ -1,0 +1,146 @@
+@import '../01-settings';
+
+.weather-forecast {
+    width: 100%;
+    max-width: $screen-lg;
+    margin: $spacing-lg auto;
+    padding: $spacing-md;
+    text-align: center;
+
+    h1 {
+        margin-bottom: $spacing-md;
+        font-size: $font-size-lg;
+        font-weight: 700;
+        line-height: $line-height-lg;
+    }
+
+    p {
+        margin-bottom: $spacing-lg;
+    }
+}
+
+.weather-forecast__form {
+    @include placeholder {
+        color: lighten($color-turquoise, 15%);
+    }
+
+    width: 100%;
+    margin-bottom: $spacing-xxl;
+}
+
+.weather-forecast__form--input {
+    width: 200px;
+    margin-right: $spacing-md;
+    padding: $spacing-sm;
+    border-bottom: 1px solid $color-turquoise;
+
+    @media #{$mq-max-xs} {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: $spacing-sm;
+        text-align: center;
+    }
+}
+
+.weather-forecast__form--button {
+    width: 200px;
+    padding: $spacing-sm;
+    border: 1px solid $color-turquoise;
+    border-radius: $border-radius-md;
+    color: $color-turquoise;
+
+    &:hover {
+        background: $color-turquoise;
+        color: $color-white;
+    }
+
+    @media #{$mq-max-xs} {
+        width: 100%;
+    }
+}
+
+.weather-forecast__today {
+    width: 100%;
+    margin: 0 auto $spacing-lg;
+    padding: $spacing-xs;
+
+    h2,
+    p {
+        font-size: $font-size-lg;
+        font-weight: 700;
+        line-height: $line-height-lg;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.weather-forecast__today--inner {
+    padding: $spacing-sm;
+    text-align: center;
+}
+
+.weather-forecast--icon {
+    margin: 0 auto $spacing-sm;
+}
+
+.weather-forecast__upcoming {
+    @include clearfix;
+    width: 100%;
+    padding-top: $spacing-lg;
+    border-top: 1px solid $color-gray-light;
+}
+
+.weather-forecast__upcoming--day {
+    width: calc((100% - (7 * #{$spacing-sm})) / 8);
+    margin-right: $spacing-sm;
+    float: left;
+    box-sizing: border-box;
+
+    @media #{$mq-md} {
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    @media #{$mq-max-md} {
+        width: calc((100% - (3 * #{$spacing-sm})) / 4);
+        margin-bottom: $spacing-md;
+
+        &:nth-child(4n+4) {
+            margin-right: 0;
+        }
+    }
+
+    @media #{$mq-max-xs} {
+        width: calc((100% - (2 * #{$spacing-sm})) / 3);
+
+        &:nth-child(3n+3) {
+            margin-right: 0;
+        }
+    }
+
+    @media #{$mq-max-xxs} {
+        width: calc((100% - #{$spacing-sm}) / 2);
+
+        &:nth-child(2n+2) {
+            margin-right: 0;
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    small {
+        color: $color-gray-light;
+        font-size: $font-size-xxs;
+        line-height: $line-height-xxs;
+    }
+}
+
+.weather-forecast__upcoming--inner {
+    padding: $spacing-sm;
+    text-align: center;
+}

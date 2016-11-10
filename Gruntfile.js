@@ -66,13 +66,15 @@ module.exports = function(grunt) {
         grunt.task.run(tasks);
     });
 
-    grunt.registerTask('w', 'Watch SASS, JavaScript or Karma tasks.', function (type) {
-        var tasks = ['clean:dev'];
+    grunt.registerTask('w', 'Watch SASS and/or JavaScript tasks.', function (type) {
+        var tasks = [
+            'clean:dev',
+            'copy:dev'
+        ];
 
         switch (type) {
             case 'scripts':
                 tasks.push(
-                    'clean:dev',
                     'sass:dev',
                     'autoprefixer:dev',
                     'watch:scripts'
@@ -81,27 +83,26 @@ module.exports = function(grunt) {
 
             case 'styles':
                 tasks.push(
-                    'clean:dev',
                     'babel:app',
                     'html2js:app',
                     'concat:dev',
+                    'concat:external',
+                    'copy:externalToDev',
                     'watch:styles'
                 );
                 break;
 
-            case 'test':
-                tasks = [
-                    'clean:test',
+            default:
+                tasks.push(
+                    'sass:dev',
+                    'autoprefixer:dev',
                     'babel:app',
                     'html2js:app',
-                    'karma:local',
+                    'concat:dev',
                     'concat:external',
-                    'watch:test'
-                ];
-                break;
-
-            default:
-                tasks.push('watch');
+                    'copy:externalToDev',
+                    'watch'
+                );
                 break;
         }
 

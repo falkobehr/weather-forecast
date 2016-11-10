@@ -7,14 +7,14 @@
 angular.module('Weather.Forecast')
     .factory('WeatherForecastFactory', WeatherForecastFactory);
 
-WeatherForecastFactory.$inject = ['SECRET_KEY', '$resource'];
+WeatherForecastFactory.$inject = ['DARK_SKY_API_SECRET_KEY', 'WEATHER_UNITS', '$resource'];
 
 /**
  * Factory for Dark Sky API requests.
  */
-function WeatherForecastFactory (SECRET_KEY, $resource) {
+function WeatherForecastFactory (DARK_SKY_API_SECRET_KEY, WEATHER_UNITS, $resource) {
     return {
-        weather: $resource(`https://api.darksky.net/forecast/${SECRET_KEY}/:coordinates?exclude=minutely,hourly,alerts,flags`, {}, {
+        weather: $resource(`https://api.darksky.net/forecast/${DARK_SKY_API_SECRET_KEY}/:coordinates?exclude=minutely,hourly,alerts,flags&units=${WEATHER_UNITS}`, {}, {
             get: {
                 method: 'GET',
                 params: {

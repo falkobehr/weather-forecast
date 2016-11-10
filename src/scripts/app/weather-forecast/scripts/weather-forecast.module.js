@@ -6,22 +6,10 @@
 
 angular.module('Weather.Forecast', ['ngResource', 'google.places', 'Weather.Templates'])
     .constant('DEFAULT_COORDINATES', '51.0712095,13.7485919')
-    .constant('DEFAULT_WEATHER_ICON_COLOR', '#49a4d8')
-    .constant('SECRET_KEY', '77f0b2e0324d25b46f60774c5f387b0b')
-    .filter('inCelsius', inCelsius)
+    .constant('WEATHER_ICON_COLOR', '#49a4d8')
+    .constant('WEATHER_UNITS', 'si')
+    .constant('DARK_SKY_API_SECRET_KEY', '77f0b2e0324d25b46f60774c5f387b0b')
     .filter('dayFromDate', dayFromDate);
-
-/**
- * Format temperature to °C.
- */
-function inCelsius () {
-    return (temperature) => {
-        const value = parseInt(temperature, 10);
-        const convertedValue = `${Math.round((value - 32) * 5.0 / 9.0)}°C`;
-
-        return convertedValue;
-    };
-}
 
 /**
  * Format day of the week.

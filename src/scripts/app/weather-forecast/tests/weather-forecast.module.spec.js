@@ -19,24 +19,6 @@ describe('weather-forecast.module.js', () => {
         });
     });
 
-    describe('inCelsius', () => {
-        let inCelsius;
-
-        beforeEach(() => {
-            inCelsius = $filter('inCelsius');
-        });
-
-        it('should be defined', () => {
-            expect(inCelsius).toBeDefined();
-        });
-
-        it('should return correct temperature string', () => {
-            const fakeFahrenheit = 50;
-
-            expect(inCelsius(fakeFahrenheit)).toBe('10°C');
-        });
-    });
-
     describe('dayFromDate', () => {
         let dayFromDate;
 

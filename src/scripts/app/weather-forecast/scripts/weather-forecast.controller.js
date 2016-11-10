@@ -7,12 +7,12 @@
 angular.module('Weather.Forecast')
     .controller('WeatherForecastController', WeatherForecastController);
 
-WeatherForecastController.$inject = ['DEFAULT_COORDINATES', 'DEFAULT_WEATHER_ICON_COLOR', '$scope', '$timeout', 'WeatherForecastService'];
+WeatherForecastController.$inject = ['DEFAULT_COORDINATES', 'WEATHER_ICON_COLOR', '$scope', '$timeout', 'WeatherForecastService'];
 
 /**
  * Controller Weather Forecast App.
  */
-function WeatherForecastController (DEFAULT_COORDINATES, DEFAULT_WEATHER_ICON_COLOR, $scope, $timeout, WeatherForecastService) {
+function WeatherForecastController (DEFAULT_COORDINATES, WEATHER_ICON_COLOR, $scope, $timeout, WeatherForecastService) {
     const REQUEST_STATE_ERROR = 'error';
     const WEATHER_NOW_SELECTOR = 'weather-now';
 
@@ -73,7 +73,7 @@ function WeatherForecastController (DEFAULT_COORDINATES, DEFAULT_WEATHER_ICON_CO
      */
     function showWeatherIcons (weatherForecastCurrently, weatherForecastDaily) {
         const skycons = new Skycons({
-            'color': DEFAULT_WEATHER_ICON_COLOR
+            'color': WEATHER_ICON_COLOR
         });
 
         skycons.add(WEATHER_NOW_SELECTOR, weatherForecastCurrently.icon);

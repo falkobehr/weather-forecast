@@ -68,7 +68,7 @@ describe('weather-forecast.factory.js', () => {
                 data: 'bar'
             }
         };
-        const fakeRequestUrl = 'https://api.darksky.net/forecast/77f0b2e0324d25b46f60774c5f387b0b/51.0712095,13.7485919?exclude=minutely,hourly,alerts,flags';
+        const fakeRequestUrl = 'https://api.darksky.net/forecast/77f0b2e0324d25b46f60774c5f387b0b/51.0712095,13.7485919?exclude=minutely,hourly,alerts,flags&units=si';
 
         it('should set correct success state', () => {
             $httpBackend

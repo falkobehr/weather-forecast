@@ -19,6 +19,30 @@ describe('weather-forecast.module.js', () => {
         });
     });
 
+    describe('temperature', () => {
+        let temperature;
+
+        beforeEach(() => {
+            temperature = $filter('temperature');
+        });
+
+        it('should be defined', () => {
+            expect(temperature).toBeDefined();
+        });
+
+        it('should return correct temperature in Celsius', () => {
+            const fakeCelsius = 10;
+
+            expect(temperature(fakeCelsius, 'C')).toBe('10°C');
+        });
+
+        it('should return correct temperature in Fahrenheit', () => {
+            const fakeFahrenheit = 50;
+
+            expect(temperature(fakeFahrenheit, 'F')).toBe('50°F');
+        });
+    });
+
     describe('dayFromDate', () => {
         let dayFromDate;
 

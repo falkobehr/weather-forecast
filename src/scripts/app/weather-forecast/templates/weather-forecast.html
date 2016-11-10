@@ -22,7 +22,7 @@
             <div class="weather-forecast__today--inner">
                 <h2>Now</h2>
                 <canvas class="weather-forecast--icon" id="{{ ::weatherNowSelector }}" width="156" height="156"></canvas>
-                <p>{{ ::weatherForecastCurrently.temperature | number:0 }}</p>
+                <p>{{ ::weatherForecastCurrently.temperature | temperature: temperatureUnit }}</p>
             </div>
         </div>
         <ul class="weather-forecast__upcoming">
@@ -31,8 +31,8 @@
                     <h2>{{ forecast.time | dayFromDate }}</h2>
                     <canvas class="weather-forecast--icon" id="{{ forecast.time }}" width="48" height="48"></canvas>
                     <p>
-                        {{ forecast.temperatureMax | number:0 }}
-                        <small>/ {{ forecast.temperatureMin | number:0 }}</small>
+                        {{ forecast.temperatureMax | temperature: temperatureUnit }}
+                        <small>/ {{ forecast.temperatureMin | temperature: temperatureUnit }}</small>
                     </p>
                 </div>
             </li>

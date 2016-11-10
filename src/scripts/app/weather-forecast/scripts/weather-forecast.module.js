@@ -9,12 +9,32 @@ angular.module('Weather.Forecast', ['ngResource', 'google.places', 'Weather.Temp
     .constant('WEATHER_ICON_COLOR', '#49a4d8')
     .constant('WEATHER_UNITS', 'si')
     .constant('DARK_SKY_API_SECRET_KEY', '77f0b2e0324d25b46f60774c5f387b0b')
-    .filter('dayFromDate', dayFromDate);
+    .filter('temperature', temperatureFilter)
+    .filter('dayFromDate', dayFromDateFilter);
+
+/**
+ * Format temperatue.
+ */
+function temperatureFilter () {
+    return (temperature, unit) => {
+        let temperatureNew = parseInt(temperature, 10);
+
+        if (unit === 'C') {
+            temperatureNew += '°C';
+        }
+
+        if (unit === 'F') {
+            temperatureNew += '°F';
+        }
+
+        return temperatureNew;
+    };
+}
 
 /**
  * Format day of the week.
  */
-function dayFromDate () {
+function dayFromDateFilter () {
     return (timestamp) => {
         const date = new Date(timestamp * 1000);
         const weekdays = [

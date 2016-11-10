@@ -7,12 +7,12 @@
 angular.module('Weather.Forecast')
     .controller('WeatherForecastController', WeatherForecastController);
 
-WeatherForecastController.$inject = ['DEFAULT_COORDINATES', 'WEATHER_ICON_COLOR', '$scope', '$timeout', 'WeatherForecastService'];
+WeatherForecastController.$inject = ['DEFAULT_COORDINATES', 'WEATHER_ICON_COLOR', 'WEATHER_UNITS', '$scope', '$timeout', 'WeatherForecastService'];
 
 /**
  * Controller Weather Forecast App.
  */
-function WeatherForecastController (DEFAULT_COORDINATES, WEATHER_ICON_COLOR, $scope, $timeout, WeatherForecastService) {
+function WeatherForecastController (DEFAULT_COORDINATES, WEATHER_ICON_COLOR, WEATHER_UNITS, $scope, $timeout, WeatherForecastService) {
     const REQUEST_STATE_ERROR = 'error';
     const WEATHER_NOW_SELECTOR = 'weather-now';
 
@@ -20,6 +20,8 @@ function WeatherForecastController (DEFAULT_COORDINATES, WEATHER_ICON_COLOR, $sc
     $scope.defaultCoordinates = DEFAULT_COORDINATES;
     $scope.showWeatherForecast = false;
     $scope.showRequestError = false;
+
+    $scope.temperatureUnit = WEATHER_UNITS === 'si' ? 'C' : 'F';
 
     $scope.submitHandler = submitHandler;
 

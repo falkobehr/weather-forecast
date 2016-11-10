@@ -41,6 +41,7 @@ describe('weather-forecast.controller.js', () => {
             initController('WeatherForecastController');
             expect($scope.showWeatherForecast).toBe(false);
             expect($scope.showRequestError).toBe(false);
+            expect($scope.temperatureUnit).toBe('C');
         });
 
         describe('method "submitHandler()"', () => {

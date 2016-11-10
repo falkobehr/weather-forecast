@@ -10,12 +10,10 @@
 describe('weather-forecast.factory.js', () => {
     let WeatherForecastFactory;
     let WeatherForecastService;
-
     let $controller;
+    let $httpBackend;
     let $rootScope;
     let $scope;
-
-    let $httpBackend;
 
     beforeEach(() => {
         module('Weather');
@@ -24,11 +22,9 @@ describe('weather-forecast.factory.js', () => {
         inject((_$controller_, _$httpBackend_, _$rootScope_, _WeatherForecastFactory_, _WeatherForecastService_) => {
             WeatherForecastFactory = _WeatherForecastFactory_;
             WeatherForecastService = _WeatherForecastService_;
-
             $controller = _$controller_;
-            $rootScope = _$rootScope_;
-
             $httpBackend = _$httpBackend_;
+            $rootScope = _$rootScope_;
         });
     });
 

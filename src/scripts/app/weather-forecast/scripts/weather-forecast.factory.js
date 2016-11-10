@@ -14,7 +14,7 @@ WeatherForecastFactory.$inject = ['SECRET_KEY', '$resource'];
  */
 function WeatherForecastFactory (SECRET_KEY, $resource) {
     return {
-        weather: $resource(`https://api.darksky.net/forecast/${SECRET_KEY}/:coordinates`, {}, {
+        weather: $resource(`https://api.darksky.net/forecast/${SECRET_KEY}/:coordinates?exclude=minutely,hourly,alerts,flags`, {}, {
             get: {
                 method: 'GET',
                 params: {

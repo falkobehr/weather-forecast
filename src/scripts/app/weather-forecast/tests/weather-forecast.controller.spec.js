@@ -35,115 +35,125 @@ describe('weather-forecast.controller.js', () => {
         it('should be defined', () => {
             initController('WeatherForecastController');
             expect(WeatherForecastController).toEqual(jasmine.any(Function)); // eslint-disable-line no-undef
+        });
+
+        it('should be initilized with correct values', () => {
+            initController('WeatherForecastController');
             expect($scope.showWeatherForecast).toBe(false);
             expect($scope.showRequestError).toBe(false);
-            expect($scope.submitHandler).toEqual(jasmine.any(Function));
         });
 
-        it('', () => {
-            spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callThrough();
+        describe('method "submitHandler()"', () => {
+            it('should be defined', () => {
+                initController('WeatherForecastController');
+                expect($scope.submitHandler).toEqual(jasmine.any(Function));
+            });
 
-            initController('WeatherForecastController');
-            $scope.submitHandler('foo, bar');
+            it('should call "WeatherForecastService.getDailyWeatherForecast" with correct coordinates from string input', () => {
+                spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callThrough();
 
-            expect(WeatherForecastService.getDailyWeatherForecast).toHaveBeenCalledWith('foo,bar');
-        });
+                initController('WeatherForecastController');
+                $scope.submitHandler('foo, bar');
 
-        it('', () => {
-            spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callThrough();
+                expect(WeatherForecastService.getDailyWeatherForecast).toHaveBeenCalledWith('foo,bar');
+            });
 
-            initController('WeatherForecastController');
-            $scope.submitHandler(' ');
+            it('should call "WeatherForecastService.getDailyWeatherForecast" with "undefined"', () => {
+                spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callThrough();
 
-            expect(WeatherForecastService.getDailyWeatherForecast).toHaveBeenCalledWith(undefined);
-        });
+                initController('WeatherForecastController');
+                $scope.submitHandler(' ');
 
-        it('', () => {
-            spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callThrough();
+                expect(WeatherForecastService.getDailyWeatherForecast).toHaveBeenCalledWith(undefined);
+            });
 
-            initController('WeatherForecastController');
-            $scope.submitHandler({
-                geometry: {
-                    location: {
-                        lat () {
-                            return 'foo';
-                        },
-                        lng () {
-                            return 'bar';
+            it('should call "WeatherForecastService.getDailyWeatherForecast" with correct coordinates from location object', () => {
+                spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callThrough();
+
+                initController('WeatherForecastController');
+                $scope.submitHandler({
+                    geometry: {
+                        location: {
+                            lat () {
+                                return 'foo';
+                            },
+                            lng () {
+                                return 'bar';
+                            }
                         }
                     }
-                }
+                });
+
+                expect(WeatherForecastService.getDailyWeatherForecast).toHaveBeenCalledWith('foo,bar');
             });
 
-            expect(WeatherForecastService.getDailyWeatherForecast).toHaveBeenCalledWith('foo,bar');
-        });
+            const fakeSuccessCallback = {
+                status: 'success',
+                weatherForecastCurrently: 'foo',
+                weatherForecast: 'bar'
+            };
 
-        it('', () => {
-            spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callFake(() => {
-                return {
-                    then (callback) {
-                        callback({
-                            status: 'error'
-                        });
-                    }
-                };
+            it('should set correct weather data', () => {
+                spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callFake(() => {
+                    return {
+                        then (callback) {
+                            callback(fakeSuccessCallback);
+                        }
+                    };
+                });
+
+                initController('WeatherForecastController');
+                $scope.submitHandler();
+
+                expect($scope.weatherForecastCurrently).toBe('foo');
+                expect($scope.weatherForecastDaily).toBe('bar');
             });
 
-            initController('WeatherForecastController');
+            it('should call "showWeatherIcons" with correct parameters', () => {
+                spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callFake(() => {
+                    return {
+                        then (callback) {
+                            callback(fakeSuccessCallback);
+                        }
+                    };
+                });
 
-            spyOn($scope, 'showWeatherIcons').and.callThrough();
+                initController('WeatherForecastController');
 
-            expect($scope.showRequestError).toBe(false);
-            expect($scope.showWeatherForecast).toBe(false);
+                spyOn($scope, 'showWeatherIcons').and.callThrough();
 
-            $scope.submitHandler();
+                $scope.submitHandler();
+                $timeout.flush();
 
-            expect($scope.showRequestError).toBe(true);
-            expect($scope.showWeatherForecast).toBe(false);
-            expect($scope.showWeatherIcons).not.toHaveBeenCalled();
-        });
-
-        it('', () => {
-            spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callFake(() => {
-                return {
-                    then (callback) {
-                        callback({
-                            status: 'success',
-                            weatherForecastCurrently: 'foo',
-                            weatherForecast: 'bar'
-                        });
-                    }
-                };
+                expect($scope.showWeatherIcons).toHaveBeenCalledWith('foo', 'bar');
             });
 
-            initController('WeatherForecastController');
-            $scope.submitHandler();
+            const fakeErrorCallback = {
+                status: 'error'
+            };
 
-            expect($scope.weatherForecastCurrently).toBe('foo');
-            expect($scope.weatherForecastDaily).toBe('bar');
-        });
+            it('should set correct variables on error', () => {
+                spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callFake(() => {
+                    return {
+                        then (callback) {
+                            callback(fakeErrorCallback);
+                        }
+                    };
+                });
 
-        it('', () => {
-            spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callFake(() => {
-                return {
-                    then (callback) {
-                        callback({
-                            status: 'success',
-                            weatherForecastCurrently: 'foo',
-                            weatherForecast: 'bar'
-                        });
-                    }
-                };
+                initController('WeatherForecastController');
+
+                spyOn($scope, 'showWeatherIcons').and.callThrough();
+
+                expect($scope.showRequestError).toBe(false);
+                expect($scope.showWeatherForecast).toBe(false);
+
+                $scope.submitHandler();
+
+                expect($scope.showRequestError).toBe(true);
+                expect($scope.showWeatherForecast).toBe(false);
+                expect($scope.showWeatherIcons).not.toHaveBeenCalled();
             });
-
-            initController('WeatherForecastController');
-
-            spyOn($scope, 'showWeatherIcons').and.callThrough();
-
-            $scope.submitHandler();
-            $timeout.flush();
-
-            expect($scope.showWeatherIcons).toHaveBeenCalledWith('foo', 'bar');
         });
     });
 });

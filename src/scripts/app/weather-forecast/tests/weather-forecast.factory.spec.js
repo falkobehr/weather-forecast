@@ -42,35 +42,37 @@ describe('weather-forecast.factory.js', () => {
             expect(WeatherForecastFactory).toEqual(jasmine.any(Object));
         });
 
-        it('should be defined', () => {
-            expect(WeatherForecastFactory.weather.get).toEqual(jasmine.any(Function));
-        });
+        describe('method "weather.get()"', () => {
+            it('should be defined', () => {
+                expect(WeatherForecastFactory.weather.get).toEqual(jasmine.any(Function));
+            });
 
-        it('should return "$promise" object', () => {
-            expect(WeatherForecastFactory.weather.get().$promise).toEqual(jasmine.any(Object));
-        });
+            it('should return "$promise" object', () => {
+                expect(WeatherForecastFactory.weather.get().$promise).toEqual(jasmine.any(Object));
+            });
 
-        it('should ...', () => {
-            spyOn(WeatherForecastFactory.weather, 'get').and.callThrough();
-            initController('WeatherForecastController');
-            // expect(WeatherForecastController).toEqual(jasmine.any(Function)); // eslint-disable-line no-undef
-            $scope.submitHandler();
+            it('should have been called on submit request', () => {
+                spyOn(WeatherForecastFactory.weather, 'get').and.callThrough();
+                initController('WeatherForecastController');
+                $scope.submitHandler();
 
-            expect(WeatherForecastFactory.weather.get).toHaveBeenCalled();
+                expect(WeatherForecastFactory.weather.get).toHaveBeenCalled();
+            });
         });
     });
 
-    describe('', () => {
+    describe('API request response handling', () => {
         const fakeResponse = {
             currently: 'foo',
             daily: {
                 data: 'bar'
             }
         };
+        const fakeRequestUrl = 'https://api.darksky.net/forecast/77f0b2e0324d25b46f60774c5f387b0b/51.0712095,13.7485919?exclude=minutely,hourly,alerts,flags';
 
-        it('...', () => {
+        it('should set correct success state', () => {
             $httpBackend
-                .when('GET', 'https://api.darksky.net/forecast/77f0b2e0324d25b46f60774c5f387b0b/51.0712095,13.7485919')
+                .when('GET', fakeRequestUrl)
                 .respond(200, fakeResponse);
 
             spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callThrough();
@@ -90,9 +92,9 @@ describe('weather-forecast.factory.js', () => {
             expect($scope.weatherForecastDaily).toBe('bar');
         });
 
-        it('...', () => {
+        it('should set correct error respone state', () => {
             $httpBackend
-                .when('GET', 'https://api.darksky.net/forecast/77f0b2e0324d25b46f60774c5f387b0b/51.0712095,13.7485919')
+                .when('GET', fakeRequestUrl)
                 .respond(400, fakeResponse);
 
             spyOn(WeatherForecastService, 'getDailyWeatherForecast').and.callThrough();
